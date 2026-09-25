@@ -63,8 +63,8 @@ select:focus-visible,input[type="color"]:focus-visible { border-color:#6b8e7b; o
 .stage-topline { position:absolute; top:18px; right:20px; left:20px; z-index:3; display:flex; align-items:center; justify-content:space-between; pointer-events:none; }
 .studio-badge { padding:6px 9px; border:1px solid #dce5df; border-radius:6px; background:rgba(255,255,255,.78); color:#176b4b; font-size:9px; font-weight:850; letter-spacing:.09em; direction:ltr; }
 .stage-note { color:#66706a; font-size:11px; font-weight:700; }
-.stage-tools { position:absolute; left:20px; top:18px; z-index:4; display:flex; gap:5px; direction:ltr; }
-.stage-tools button { min-width:37px; height:34px; padding:0 12px; border:1px solid #dce1dd; border-radius:8px; background:rgba(255,255,255,.88); color:#39423d; font-size:10px; font-weight:750; cursor:pointer; box-shadow:0 4px 12px rgba(25,35,30,.06); backdrop-filter:blur(8px); }
+.stage-tools { position:absolute; left:20px; top:18px; z-index:4; display:flex; align-items:center; gap:6px; direction:ltr; }
+.stage-tools button { min-width:0; width:auto; flex:0 0 auto; height:34px; padding:0 13px; white-space:nowrap; border:1px solid #dce1dd; border-radius:8px; background:rgba(255,255,255,.88); color:#39423d; font-size:10px; font-weight:750; cursor:pointer; box-shadow:0 4px 12px rgba(25,35,30,.06); backdrop-filter:blur(8px); }
 .stage-tools button:hover { background:#fff; }
 .stage-tools button.is-active { background:#176b4b; border-color:#176b4b; color:#fff; }
 .stage-tools button:focus-visible { outline:2px solid #75a993; outline-offset:2px; }
@@ -86,7 +86,7 @@ select:focus-visible,input[type="color"]:focus-visible { border-color:#6b8e7b; o
   .mockup-stage { inset:10px 10px 38px; border-radius:14px; }
   .stage-topline { top:13px; right:14px; left:14px; }
   .stage-tools { left:14px; top:13px; }
-  .stage-tools button { min-width:0; padding:0 11px; }
+  .stage-tools button { padding:0 12px; }
   .dimension-badge { right:14px; bottom:35px; }
   .render-status { left:14px; bottom:35px; }
   .viewport-footer { bottom:9px; gap:10px; }
