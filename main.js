@@ -91,7 +91,11 @@ class BoxConfigurator {
       'baseHeightValue',
       'lidHeightValue',
       'wallThicknessValue',
-      'overlapValue'
+      'overlapValue',
+      'viewOpen',
+      'viewClosed',
+      'viewReset',
+      'dimensionBadge'
     ];
 
     for (const id of ids) {
