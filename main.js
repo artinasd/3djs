@@ -299,12 +299,12 @@ class BoxConfigurator {
     const parts = [];
     const lidBottom = Hb - O;
 
-    parts.push(
-      this.createRoundedPart(L, t, W, 0, lidBottom + t / 2, 0)
-    );
-
     const wallHeight = Math.max(Hl - t, 0.2);
-    const wallCenterY = lidBottom + t + wallHeight / 2;
+    const wallCenterY = lidBottom + wallHeight / 2;
+
+    parts.push(
+      this.createRoundedPart(L, t, W, 0, lidBottom + Hl - t / 2, 0)
+    );
 
     parts.push(
       this.createRoundedPart(t, wallHeight, W, -(L - t) / 2, wallCenterY, 0),
