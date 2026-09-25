@@ -3,7 +3,6 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import { WebGL } from 'three/addons/capabilities/WebGL.js';
 
 class BoxConfigurator {
   constructor(container) {
@@ -54,11 +53,6 @@ class BoxConfigurator {
 
   init() {
     this.cacheElements();
-
-    if (!WebGL.isWebGLAvailable()) {
-      this.showError('WebGL is not available in this browser. Please enable hardware acceleration or use a browser with WebGL support.');
-      return;
-    }
 
     this.initScene();
     this.initLights();
