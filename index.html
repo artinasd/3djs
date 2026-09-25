@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Interactive Three.js hardbox 3D configurator">
-  <title>Hardbox 3D Configurator</title>
+  <meta name="description" content="محاسبه‌گر و موکاپ سه‌بعدی هاردباکس">
+  <title>محاسبه‌گر سه‌بعدی هاردباکس</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='7' y='15' width='50' height='34' rx='4' fill='%23ffffff' stroke='%23111111' stroke-width='4'/%3E%3Cpath d='M7 25h50M32 15v34' stroke='%23111111' stroke-width='3'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="./style.css">
   <script type="importmap">
@@ -18,111 +18,67 @@
 </head>
 <body>
   <div id="app">
-    <aside id="controls" aria-label="Box configurator controls">
+    <aside id="controls" aria-label="کنترل‌های پیکربندی هاردباکس">
       <div class="panel-header">
-        <p class="eyebrow">Three.js</p>
-        <h1>Hardbox 3D Configurator</h1>
-        <p class="intro">Adjust the dimensions and finish to preview a rigid box in real time.</p>
+        <div class="brand-line"><span class="brand-dot"></span><span>استودیو هاردباکس</span></div>
+        <h1>محاسبه‌گر سه‌بعدی هاردباکس</h1>
+        <p class="intro">ابعاد و ظاهر جعبه را تغییر دهید و نتیجه را به‌صورت زنده در موکاپ سه‌بعدی ببینید.</p>
       </div>
 
       <section class="control-section" aria-labelledby="dimensions-heading">
-        <h2 id="dimensions-heading">Dimensions</h2>
-
-        <div class="field">
-          <div class="field-label"><label for="length">Length</label><output id="lengthValue">200 mm</output></div>
-          <input id="length" type="range" min="50" max="500" value="200" step="1" aria-label="Length in millimeters">
+        <div class="section-heading">
+          <h2 id="dimensions-heading">ابعاد جعبه</h2>
+          <span class="section-caption">میلی‌متر</span>
         </div>
 
-        <div class="field">
-          <div class="field-label"><label for="width">Width</label><output id="widthValue">150 mm</output></div>
-          <input id="width" type="range" min="50" max="500" value="150" step="1" aria-label="Width in millimeters">
-        </div>
-
-        <div class="field">
-          <div class="field-label"><label for="baseHeight">Base Height</label><output id="baseHeightValue">80 mm</output></div>
-          <input id="baseHeight" type="range" min="20" max="300" value="80" step="1" aria-label="Base height in millimeters">
-        </div>
-
-        <div class="field">
-          <div class="field-label"><label for="lidHeight">Lid Height</label><output id="lidHeightValue">40 mm</output></div>
-          <input id="lidHeight" type="range" min="10" max="100" value="40" step="1" aria-label="Lid height in millimeters">
-        </div>
-
-        <div class="field">
-          <div class="field-label"><label for="wallThickness">Wall Thickness</label><output id="wallThicknessValue">2 mm</output></div>
-          <input id="wallThickness" type="range" min="1" max="5" value="2" step="0.5" aria-label="Wall thickness in millimeters">
-        </div>
-
-        <div class="field">
-          <div class="field-label"><label for="overlap">Overlap</label><output id="overlapValue">15 mm</output></div>
-          <input id="overlap" type="range" min="5" max="30" value="15" step="1" aria-label="Lid overlap in millimeters">
-        </div>
+        <div class="field"><div class="field-label"><label for="length">طول</label><output id="lengthValue">۲۰۰ mm</output></div><input id="length" type="range" min="50" max="500" value="200" step="1" aria-label="طول بر حسب میلی‌متر"></div>
+        <div class="field"><div class="field-label"><label for="width">عرض</label><output id="widthValue">۱۵۰ mm</output></div><input id="width" type="range" min="50" max="500" value="150" step="1" aria-label="عرض بر حسب میلی‌متر"></div>
+        <div class="field"><div class="field-label"><label for="baseHeight">ارتفاع بدنه</label><output id="baseHeightValue">۸۰ mm</output></div><input id="baseHeight" type="range" min="20" max="300" value="80" step="1" aria-label="ارتفاع بدنه بر حسب میلی‌متر"></div>
+        <div class="field"><div class="field-label"><label for="lidHeight">ارتفاع درب</label><output id="lidHeightValue">۴۰ mm</output></div><input id="lidHeight" type="range" min="10" max="100" value="40" step="1" aria-label="ارتفاع درب بر حسب میلی‌متر"></div>
+        <div class="field"><div class="field-label"><label for="wallThickness">ضخامت دیواره</label><output id="wallThicknessValue">۲ mm</output></div><input id="wallThickness" type="range" min="1" max="5" value="2" step="0.5" aria-label="ضخامت دیواره بر حسب میلی‌متر"></div>
+        <div class="field"><div class="field-label"><label for="overlap">هم‌پوشانی درب</label><output id="overlapValue">۱۵ mm</output></div><input id="overlap" type="range" min="5" max="30" value="15" step="1" aria-label="هم‌پوشانی درب بر حسب میلی‌متر"></div>
       </section>
 
       <section class="control-section" aria-labelledby="appearance-heading">
-        <h2 id="appearance-heading">Appearance</h2>
+        <div class="section-heading"><h2 id="appearance-heading">ظاهر و روکش</h2><span class="section-caption">زنده</span></div>
         <div class="appearance-row">
-          <label class="color-control" for="color">
-            <span>Color</span>
-            <input id="color" type="color" value="#ffffff" aria-label="Box color">
-          </label>
-          <label class="select-control" for="finish">
-            <span>Finish</span>
-            <select id="finish" aria-label="Box finish">
-              <option value="matte" selected>Matte</option>
-              <option value="satin">Satin</option>
-              <option value="glossy">Glossy</option>
-            </select>
-          </label>
+          <label class="color-control" for="color"><span>رنگ جعبه</span><input id="color" type="color" value="#ffffff" aria-label="رنگ جعبه"></label>
+          <label class="select-control" for="finish"><span>نوع روکش</span><select id="finish" aria-label="نوع روکش"><option value="matte" selected>مات</option><option value="satin">ساتن</option><option value="glossy">براق</option></select></label>
         </div>
       </section>
 
-      <section class="actions" aria-label="Box actions">
-        <button id="toggleLid" class="button button-primary" type="button">Open Lid</button>
-        <button id="resetCamera" class="button button-secondary" type="button">Reset Camera</button>
+      <section class="actions" aria-label="عملیات جعبه">
+        <button id="toggleLid" class="button button-primary" type="button" aria-pressed="false">نمای باز</button>
+        <button id="resetCamera" class="button button-secondary" type="button">↺ بازنشانی نما</button>
       </section>
 
       <section class="results" aria-labelledby="results-heading">
-        <div class="results-header">
-          <h2 id="results-heading">Calculated Results</h2>
-          <span class="unit-badge">mm / cm³ / cm²</span>
-        </div>
-
+        <div class="results-header"><h2 id="results-heading">مشخصات محاسبه‌شده</h2><span class="unit-badge">mm / cm³ / cm²</span></div>
         <dl>
-          <div class="result-row">
-            <dt>Outer Dimensions</dt>
-            <dd id="outerDimensions">200.00 × 150.00 × 105.00 mm</dd>
-          </div>
-          <div class="result-row">
-            <dt>Inner Dimensions</dt>
-            <dd id="innerDimensions">196.00 × 146.00 × 101.00 mm</dd>
-          </div>
-          <div class="result-row">
-            <dt>Outer Volume</dt>
-            <dd id="outerVolume">3150.00 cm³</dd>
-          </div>
-          <div class="result-row">
-            <dt>Inner Volume</dt>
-            <dd id="innerVolume">2884.65 cm³</dd>
-          </div>
-          <div class="result-row">
-            <dt>Surface Area</dt>
-            <dd id="surfaceArea">654.00 cm²</dd>
-          </div>
+          <div class="result-row"><dt>ابعاد خارجی</dt><dd id="outerDimensions">۲۰۰ × ۱۵۰ × ۱۰۵ mm</dd></div>
+          <div class="result-row"><dt>ابعاد داخلی</dt><dd id="innerDimensions">۱۹۶ × ۱۴۶ × ۱۰۱ mm</dd></div>
+          <div class="result-row"><dt>حجم خارجی</dt><dd id="outerVolume">۳۱۵۰ cm³</dd></div>
+          <div class="result-row"><dt>حجم داخلی</dt><dd id="innerVolume">۲۸۸۴.۶۵ cm³</dd></div>
+          <div class="result-row"><dt>مساحت سطح</dt><dd id="surfaceArea">۶۵۴ cm²</dd></div>
         </dl>
       </section>
-
-      <p class="hint">Drag to orbit · Scroll to zoom · Right-drag to pan</p>
     </aside>
 
-    <main id="viewport" aria-label="Interactive 3D hardbox viewport">
-      <div id="loading" class="loading-overlay" role="status" aria-live="polite">
-        <div class="loader" aria-hidden="true"></div>
-        <span>Preparing 3D preview…</span>
+    <main id="viewport" aria-label="موکاپ سه‌بعدی هاردباکس">
+      <div class="mockup-stage">
+        <div class="stage-topline"><span class="studio-badge">LIVE 3D STUDIO</span><span class="stage-note">موکاپ زنده محصول</span></div>
+        <div id="loading" class="loading-overlay" role="status" aria-live="polite"><div class="loader" aria-hidden="true"></div><span>در حال آماده‌سازی موکاپ سه‌بعدی…</span></div>
+        <div class="stage-tools" aria-label="کنترل نمای جعبه">
+          <button id="viewOpen" type="button">نمای باز</button>
+          <button id="viewClosed" type="button" class="is-active">نمای بسته</button>
+          <button id="viewReset" type="button" aria-label="بازنشانی دوربین">↺</button>
+        </div>
+        <div id="dimensionBadge" class="dimension-badge">۲۰ × ۱۵ × ۱۰.۵ cm</div>
+        <div class="render-status"><span class="status-dot"></span><span>استودیو زنده — برای چرخش بکشید</span></div>
       </div>
+      <div class="viewport-footer"><span>چرخش: کشیدن</span><span>بزرگنمایی: اسکرول</span><span>جابه‌جایی: راست‌کلیک و کشیدن</span></div>
     </main>
   </div>
-
   <script type="module" src="./main.js"></script>
 </body>
 </html>
