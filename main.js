@@ -38,7 +38,7 @@ class BoxConfigurator {
     this.listeners = [];
 
     this.elements = {};
-    this.numberFormat = new Intl.NumberFormat(undefined, {
+    this.numberFormat = new Intl.NumberFormat('fa-IR', {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2
     });
@@ -371,6 +371,20 @@ class BoxConfigurator {
     }
   }
 
+  setLidView(open) {
+    this.state.lidOpen = open;
+    this.targetLidY = open ? 100 : 0;
+    this.updateViewButtons();
+  }
+
+  updateViewButtons() {
+    const open = this.state.lidOpen;
+    this.elements.toggleLid.textContent = open ? 'نمای بسته' : 'نمای باز';
+    this.elements.toggleLid.setAttribute('aria-pressed', String(open));
+    this.elements.viewOpen.classList.toggle('is-active', open);
+    this.elements.viewClosed.classList.toggle('is-active', !open);
+  }
+
   resetCamera() {
     const maxDim = this.getMaxDimension();
     const totalHeight = this.getTotalHeight();
@@ -422,6 +436,11 @@ class BoxConfigurator {
 
     this.elements.surfaceArea.textContent =
       this.formatNumber(surfaceArea) + ' cm²';
+
+    if (this.elements.dimensionBadge) {
+      this.elements.dimensionBadge.textContent =
+        `${this.formatNumber(L / 10)} × ${this.formatNumber(W / 10)} × ${this.formatNumber(outerHeight / 10)} cm`;
+    }
   }
 
   formatDimensions(a, b, c) {
@@ -526,7 +545,7 @@ class BoxConfigurator {
     const toggleHandler = () => {
       this.state.lidOpen = !this.state.lidOpen;
       this.targetLidY = this.state.lidOpen ? 100 : 0;
-      this.elements.toggleLid.textContent = this.state.lidOpen ? 'Close Lid' : 'Open Lid';
+      this.updateViewButtons();
       this.elements.toggleLid.setAttribute('aria-pressed', String(this.state.lidOpen));
     };
 
@@ -537,6 +556,17 @@ class BoxConfigurator {
 
     this.elements.resetCamera.addEventListener('click', resetHandler);
     this.listeners.push(() => this.elements.resetCamera.removeEventListener('click', resetHandler));
+
+    const openViewHandler = () => this.setLidView(true);
+    const closedViewHandler = () => this.setLidView(false);
+    const resetViewHandler = () => this.resetCamera();
+
+    this.elements.viewOpen.addEventListener('click', openViewHandler);
+    this.elements.viewClosed.addEventListener('click', closedViewHandler);
+    this.elements.viewReset.addEventListener('click', resetViewHandler);
+    this.listeners.push(() => this.elements.viewOpen.removeEventListener('click', openViewHandler));
+    this.listeners.push(() => this.elements.viewClosed.removeEventListener('click', closedViewHandler));
+    this.listeners.push(() => this.elements.viewReset.removeEventListener('click', resetViewHandler));
 
     const resizeHandler = () => this.onWindowResize();
     window.addEventListener('resize', resizeHandler);
