@@ -7,6 +7,7 @@ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 class BoxConfigurator {
   constructor(container) {
     this.container = container;
+    this.renderContainer = null;
     this.state = {
       length: 200,
       width: 150,
@@ -53,6 +54,7 @@ class BoxConfigurator {
 
   init() {
     this.cacheElements();
+    this.renderContainer = this.container.querySelector('.mockup-stage') || this.container;
 
     this.initScene();
     this.initLights();
@@ -136,7 +138,7 @@ class BoxConfigurator {
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.setClearColor(0xf5f5f5, 1);
 
-    this.container.appendChild(this.renderer.domElement);
+    this.renderContainer.appendChild(this.renderer.domElement);
     this.renderer.domElement.setAttribute('aria-label', 'Interactive 3D hardbox model');
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -577,7 +579,7 @@ class BoxConfigurator {
     this.listeners.push(() => window.removeEventListener('resize', resizeHandler));
 
     this.resizeObserver = new ResizeObserver(() => this.onWindowResize());
-    this.resizeObserver.observe(this.container);
+    this.resizeObserver.observe(this.renderContainer);
 
     const canvas = this.renderer?.domElement;
     if (canvas) {
@@ -606,8 +608,8 @@ class BoxConfigurator {
       return;
     }
 
-    const width = Math.max(1, this.container.clientWidth);
-    const height = Math.max(1, this.container.clientHeight);
+    const width = Math.max(1, this.renderContainer?.clientWidth || this.container.clientWidth);
+    const height = Math.max(1, this.renderContainer?.clientHeight || this.container.clientHeight);
 
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
